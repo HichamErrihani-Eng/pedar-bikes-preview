@@ -1,0 +1,1116 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Pedar Bikes POS Preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap">
+<style>
+/* Layout: one column; the screen preview is the page, progress and requests follow it. */
+:root, [data-theme="light"] {
+  --bg: #EDF0F3;
+  --surface: #FFFFFF;
+  --surface-2: #F4F6F8;
+  --border: #D5DBE1;
+  --border-strong: #75828F;
+  --ink: #1F2933;
+  --ink-muted: #4A5764;
+  --ink-subtle: #5B6875;
+  --primary: #1F2933;
+  --on-primary: #FFFFFF;
+  --on-solid: #000000;
+  --on-solid-dark: #FFFFFF;
+  --focus: #1557C0;
+  --edge: rgba(0,0,0,0.18);
+  --overlay: rgba(14,19,23,0.55);
+  --accent: #00B8D9;
+  --accent-text: #00687C;
+  --accent-soft: #D6F3F8;
+  --success: #2E9E5B;
+  --success-text: #1C7341;
+  --success-soft: #DCF2E5;
+  --warning: #F2A900;
+  --warning-text: #805300;
+  --warning-soft: #FCEFC9;
+  --danger: #D64545;
+  --danger-text: #B32D2D;
+  --danger-soft: #FBE2E2;
+  --info: #3B82F6;
+  --info-text: #1D5AC4;
+  --info-soft: #DDE9FD;
+  --fam-wash: #00B8D9;
+  --fam-quick: #57C785;
+  --fam-bronze: #B0693A;
+  --fam-silver: #A8B0B8;
+  --fam-gold: #E0A526;
+  --fam-adjust: #8E97F2;
+  --fam-wheels: #B79BF2;
+  --fam-tyres: #F29CC0;
+  --fam-min: #F5DC4E;
+  --fam-other: #DFE4E9;
+  --st-received: #9AA5B1;
+  --st-diagnostic: #3B82F6;
+  --st-approval: #F2A900;
+  --st-progress: #00B8D9;
+  --st-parts: #F97316;
+  --st-ready: #2E9E5B;
+  --st-late: #D64545;
+  --st-delivered: #1B6B3F;
+  --shadow-1: 0 1px 2px rgba(31,41,51,0.10);
+  --shadow-2: 0 16px 40px rgba(31,41,51,0.20);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0E1317;
+  --surface: #171E25;
+  --surface-2: #1F2830;
+  --border: #2B3641;
+  --border-strong: #7C8B99;
+  --ink: #EEF2F5;
+  --ink-muted: #B3BEC9;
+  --ink-subtle: #98A5B2;
+  --primary: #EEF2F5;
+  --on-primary: #0E1317;
+  --on-solid: #000000;
+  --on-solid-dark: #FFFFFF;
+  --focus: #8FB8FB;
+  --edge: rgba(0,0,0,0.18);
+  --overlay: rgba(0,0,0,0.65);
+  --accent: #00B8D9;
+  --accent-text: #5AD5EB;
+  --accent-soft: #0C3440;
+  --success: #2E9E5B;
+  --success-text: #6BD39A;
+  --success-soft: #11311F;
+  --warning: #F2A900;
+  --warning-text: #F6C453;
+  --warning-soft: #3A2B05;
+  --danger: #D64545;
+  --danger-text: #F59191;
+  --danger-soft: #3F1616;
+  --info: #3B82F6;
+  --info-text: #8FB8FB;
+  --info-soft: #10254A;
+  --fam-wash: #00B8D9;
+  --fam-quick: #57C785;
+  --fam-bronze: #B0693A;
+  --fam-silver: #A8B0B8;
+  --fam-gold: #E0A526;
+  --fam-adjust: #8E97F2;
+  --fam-wheels: #B79BF2;
+  --fam-tyres: #F29CC0;
+  --fam-min: #F5DC4E;
+  --fam-other: #DFE4E9;
+  --st-received: #9AA5B1;
+  --st-diagnostic: #3B82F6;
+  --st-approval: #F2A900;
+  --st-progress: #00B8D9;
+  --st-parts: #F97316;
+  --st-ready: #2E9E5B;
+  --st-late: #D64545;
+  --st-delivered: #1B6B3F;
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.50);
+  --shadow-2: 0 16px 40px rgba(0,0,0,0.60);
+  color-scheme: dark;
+} }
+[data-theme="dark"] {
+  --bg: #0E1317;
+  --surface: #171E25;
+  --surface-2: #1F2830;
+  --border: #2B3641;
+  --border-strong: #7C8B99;
+  --ink: #EEF2F5;
+  --ink-muted: #B3BEC9;
+  --ink-subtle: #98A5B2;
+  --primary: #EEF2F5;
+  --on-primary: #0E1317;
+  --on-solid: #000000;
+  --on-solid-dark: #FFFFFF;
+  --focus: #8FB8FB;
+  --edge: rgba(0,0,0,0.18);
+  --overlay: rgba(0,0,0,0.65);
+  --accent: #00B8D9;
+  --accent-text: #5AD5EB;
+  --accent-soft: #0C3440;
+  --success: #2E9E5B;
+  --success-text: #6BD39A;
+  --success-soft: #11311F;
+  --warning: #F2A900;
+  --warning-text: #F6C453;
+  --warning-soft: #3A2B05;
+  --danger: #D64545;
+  --danger-text: #F59191;
+  --danger-soft: #3F1616;
+  --info: #3B82F6;
+  --info-text: #8FB8FB;
+  --info-soft: #10254A;
+  --fam-wash: #00B8D9;
+  --fam-quick: #57C785;
+  --fam-bronze: #B0693A;
+  --fam-silver: #A8B0B8;
+  --fam-gold: #E0A526;
+  --fam-adjust: #8E97F2;
+  --fam-wheels: #B79BF2;
+  --fam-tyres: #F29CC0;
+  --fam-min: #F5DC4E;
+  --fam-other: #DFE4E9;
+  --st-received: #9AA5B1;
+  --st-diagnostic: #3B82F6;
+  --st-approval: #F2A900;
+  --st-progress: #00B8D9;
+  --st-parts: #F97316;
+  --st-ready: #2E9E5B;
+  --st-late: #D64545;
+  --st-delivered: #1B6B3F;
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.50);
+  --shadow-2: 0 16px 40px rgba(0,0,0,0.60);
+  color-scheme: dark;
+}
+[data-theme="light"] { color-scheme: light; }
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+  --target-min: 48px;
+  --tile-h: 72px;
+  --key-h: 64px;
+  --font-sans: "IBM Plex Sans", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --font-condensed: "IBM Plex Sans Condensed", "IBM Plex Sans Arabic", "Arial Narrow", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+/* Pedar Bikes POS: component styles. Every colour, space, radius and shadow is a token from tokens.css. */
+.pb-root { font-family: var(--font-sans); color: var(--ink); background: var(--bg); font-variant-numeric: tabular-nums; -webkit-font-smoothing: antialiased; }
+.pb-preview { margin: 0; padding: var(--space-4); }
+.pb-row { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.pb-stack { display: flex; flex-direction: column; gap: var(--space-3); }
+.pb-note { margin: 0; font-size: 12px; line-height: 16px; color: var(--ink-subtle); }
+.pb-icon { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.pb-num { text-align: end; font-variant-numeric: tabular-nums; }
+.pb-code { font-family: var(--font-mono); font-size: 13px; line-height: 18px; }
+
+/* Focus: one solid ring everywhere */
+.pb-tile:focus-visible, .pb-btn:focus-visible, .pb-key:focus-visible, .pb-line:focus-visible, .pb-kcard:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* ServiceTile */
+.pb-tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--space-2); }
+.pb-tile { display: flex; align-items: center; justify-content: center; text-align: center; min-height: var(--tile-h); min-width: 0; margin: 0; padding: var(--space-1) var(--space-2); border: 0; border-radius: var(--radius-md); background: var(--fam-other); color: var(--on-solid); box-shadow: inset 0 -3px 0 var(--edge); font-family: var(--font-condensed); font-size: 14px; line-height: 17px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; cursor: pointer; transition: transform 80ms ease; }
+.pb-tile:active { transform: translateY(2px); box-shadow: inset 0 -1px 0 var(--edge); }
+.pb-tile[data-fam="wash"] { background: var(--fam-wash); }
+.pb-tile[data-fam="quick"] { background: var(--fam-quick); }
+.pb-tile[data-fam="bronze"] { background: var(--fam-bronze); }
+.pb-tile[data-fam="silver"] { background: var(--fam-silver); }
+.pb-tile[data-fam="gold"] { background: var(--fam-gold); }
+.pb-tile[data-fam="adjust"] { background: var(--fam-adjust); }
+.pb-tile[data-fam="wheels"] { background: var(--fam-wheels); }
+.pb-tile[data-fam="tyres"] { background: var(--fam-tyres); }
+.pb-tile[data-fam="min"] { background: var(--fam-min); }
+.pb-tile[data-fam="other"] { background: var(--fam-other); }
+[dir="rtl"] .pb-tile { letter-spacing: 0; font-size: 15px; line-height: 20px; }
+
+/* ActionButton */
+.pb-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: var(--target-min); min-width: var(--target-min); margin: 0; padding: 0 var(--space-4); border: 1px solid var(--border-strong); border-radius: var(--radius-md); background: var(--surface); color: var(--ink); font-family: var(--font-condensed); font-size: 16px; line-height: 20px; font-weight: 600; cursor: pointer; transition: transform 80ms ease; }
+.pb-btn:active { transform: translateY(1px); }
+.pb-btn[data-variant="primary"] { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.pb-btn[data-variant="accent"] { background: var(--accent); border-color: var(--accent); color: var(--on-solid); box-shadow: inset 0 -3px 0 var(--edge); }
+.pb-btn[data-variant="danger"] { background: var(--danger); border-color: var(--danger); color: var(--on-solid); box-shadow: inset 0 -3px 0 var(--edge); }
+.pb-btn[data-variant="quiet"] { background: var(--surface-2); border-color: var(--border); }
+.pb-btn[data-size="lg"] { min-height: var(--key-h); font-size: 20px; line-height: 24px; }
+.pb-btn[data-block] { display: flex; width: 100%; box-sizing: border-box; }
+.pb-btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+.pb-btn .pb-icon { width: 16px; height: 16px; }
+[dir="rtl"] .pb-btn { font-family: var(--font-sans); }
+
+/* Keypad */
+.pb-keypad { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); }
+.pb-key { min-height: var(--key-h); margin: 0; padding: 0; border: 1px solid var(--border-strong); border-radius: var(--radius-md); background: var(--surface-2); color: var(--ink); font-family: var(--font-condensed); font-size: 24px; line-height: 28px; font-weight: 500; cursor: pointer; transition: transform 80ms ease; }
+.pb-key:active { transform: translateY(1px); }
+.pb-key[data-kind="fn"] { font-size: 16px; line-height: 20px; font-weight: 600; color: var(--ink-muted); }
+
+/* TicketTotals */
+.pb-ticket { display: flex; flex-direction: column; min-width: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.pb-ticket-head, .pb-line { display: grid; grid-template-columns: 40px minmax(0, 1fr) 76px 84px; gap: var(--space-2); align-items: center; padding: var(--space-2) var(--space-3); }
+.pb-ticket-head { background: var(--surface-2); border-bottom: 1px solid var(--border); color: var(--ink-muted); font-size: 13px; line-height: 18px; font-weight: 500; }
+.pb-line { min-height: var(--target-min); box-sizing: border-box; border-bottom: 1px solid var(--border); font-size: 15px; line-height: 20px; }
+.pb-line[aria-selected="true"] { background: var(--accent-soft); font-weight: 600; }
+.pb-line-sub { display: block; font-size: 12px; line-height: 16px; font-weight: 400; color: var(--ink-subtle); }
+.pb-ticket-body { flex: 1 1 auto; min-height: 0; }
+.pb-totals { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-1) var(--space-4); margin: 0; padding: var(--space-3); border-top: 1px solid var(--border); font-size: 13px; line-height: 18px; }
+.pb-totals dt { color: var(--ink-muted); font-weight: 500; }
+.pb-totals dd { margin: 0; text-align: end; color: var(--ink); font-size: 15px; }
+.pb-net { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) var(--space-4); background: var(--primary); color: var(--on-primary); }
+.pb-net-label { font-family: var(--font-condensed); font-size: 22px; line-height: 28px; font-weight: 600; letter-spacing: 0.04em; }
+.pb-net-value { font-size: 56px; line-height: 60px; font-weight: 600; }
+.pb-net-unit { font-size: 18px; font-weight: 500; }
+.pb-pay { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--border); }
+.pb-pay > div { background: var(--surface); padding: var(--space-3) var(--space-4); }
+.pb-pay-label { display: block; font-size: 13px; line-height: 18px; font-weight: 500; color: var(--ink-muted); }
+.pb-pay-value { display: block; font-size: 32px; line-height: 38px; font-weight: 600; }
+.pb-pay-value[data-tone="paid"] { color: var(--success-text); }
+.pb-pay-value[data-tone="due"] { color: var(--warning-text); }
+[dir="rtl"] .pb-net-label { letter-spacing: 0; font-family: var(--font-sans); }
+
+/* StatusPill */
+.pb-pill { display: inline-flex; align-items: center; gap: var(--space-1); min-height: 28px; box-sizing: border-box; padding: 0 var(--space-3) 0 var(--space-2); border-radius: var(--radius-pill); background: var(--st-received); color: var(--on-solid); font-size: 13px; line-height: 18px; font-weight: 600; white-space: nowrap; }
+[dir="rtl"] .pb-pill { padding: 0 var(--space-2) 0 var(--space-3); }
+.pb-pill .pb-icon { width: 16px; height: 16px; }
+.pb-pill[data-status="diagnostic"] { background: var(--st-diagnostic); }
+.pb-pill[data-status="approval"] { background: var(--st-approval); }
+.pb-pill[data-status="progress"] { background: var(--st-progress); }
+.pb-pill[data-status="parts"] { background: var(--st-parts); }
+.pb-pill[data-status="ready"] { background: var(--st-ready); }
+.pb-pill[data-status="delivered"] { background: var(--st-delivered); color: var(--on-solid-dark); }
+.pb-pill[data-status="late"] { background: var(--st-late); }
+
+/* DeviceIndicator */
+.pb-device { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 32px; box-sizing: border-box; padding: 0 var(--space-3); border: 1px solid var(--border); border-radius: var(--radius-pill); background: var(--surface); color: var(--ink); font-size: 13px; line-height: 18px; font-weight: 500; white-space: nowrap; }
+.pb-device-state { display: inline-flex; align-items: center; gap: var(--space-1); font-weight: 600; }
+.pb-device-state .pb-icon { width: 16px; height: 16px; }
+.pb-device[data-state="ok"] .pb-device-state { color: var(--success-text); }
+.pb-device[data-state="warn"] { background: var(--warning-soft); border-color: var(--warning-text); }
+.pb-device[data-state="warn"] .pb-device-state { color: var(--warning-text); }
+.pb-device[data-state="error"] { background: var(--danger-soft); border-color: var(--danger-text); }
+.pb-device[data-state="error"] .pb-device-state { color: var(--danger-text); }
+
+/* KanbanCard and column */
+.pb-col { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; padding: var(--space-2); border-radius: var(--radius-lg); background: var(--surface-2); }
+.pb-col-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); padding: var(--space-1); }
+.pb-count { font-size: 13px; line-height: 18px; font-weight: 600; color: var(--ink-muted); }
+.pb-kcard { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; padding: var(--space-3); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-1); }
+.pb-kcard-top, .pb-kcard-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.pb-kcard-ref { font-family: var(--font-mono); font-size: 13px; line-height: 18px; color: var(--ink-muted); }
+.pb-kcard-title { margin: 0; font-size: 15px; line-height: 20px; font-weight: 600; }
+.pb-kcard-meta { margin: 0; font-size: 13px; line-height: 18px; color: var(--ink-muted); }
+.pb-kcard-foot { font-size: 13px; line-height: 18px; }
+.pb-late { display: inline-flex; align-items: center; gap: var(--space-1); font-weight: 600; color: var(--danger-text); }
+.pb-late .pb-icon { width: 16px; height: 16px; }
+.pb-timer { font-family: var(--font-mono); font-size: 13px; line-height: 18px; color: var(--ink); }
+.pb-avatar { display: inline-grid; place-items: center; width: 28px; height: 28px; flex: none; border: 1px solid var(--border-strong); border-radius: var(--radius-pill); background: var(--surface-2); color: var(--ink); font-size: 12px; line-height: 16px; font-weight: 600; }
+
+/* KpiTile, panel, alert */
+.pb-kpi { display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; padding: var(--space-4); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-1); }
+.pb-kpi-label { font-size: 13px; line-height: 18px; font-weight: 500; color: var(--ink-muted); }
+.pb-kpi-value { font-size: 32px; line-height: 38px; font-weight: 600; }
+.pb-kpi-unit { font-size: 15px; font-weight: 500; color: var(--ink-muted); }
+.pb-kpi-delta { display: inline-flex; align-items: center; gap: var(--space-1); font-size: 13px; line-height: 18px; font-weight: 600; color: var(--ink-muted); }
+.pb-kpi-delta .pb-icon { width: 16px; height: 16px; }
+.pb-kpi-delta[data-trend="up"] { color: var(--success-text); }
+.pb-kpi-delta[data-trend="down"] { color: var(--danger-text); }
+.pb-panel { min-width: 0; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
+.pb-panel-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border); font-size: 18px; line-height: 24px; font-weight: 600; }
+.pb-panel-body { padding: var(--space-4); }
+.pb-alert { display: flex; align-items: flex-start; gap: var(--space-2); padding: var(--space-3); border-radius: var(--radius-md); background: var(--info-soft); color: var(--ink); font-size: 15px; line-height: 22px; }
+.pb-alert .pb-icon { margin-top: 2px; color: var(--info-text); }
+.pb-alert[data-tone="warning"] { background: var(--warning-soft); }
+.pb-alert[data-tone="warning"] .pb-icon { color: var(--warning-text); }
+.pb-alert[data-tone="danger"] { background: var(--danger-soft); }
+.pb-alert[data-tone="danger"] .pb-icon { color: var(--danger-text); }
+
+/* PinDialog */
+.pb-dialog { display: flex; flex-direction: column; gap: var(--space-4); width: 360px; max-width: 100%; box-sizing: border-box; padding: var(--space-6); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-2); }
+.pb-dialog-title { display: flex; align-items: center; gap: var(--space-2); margin: 0; font-size: 18px; line-height: 24px; font-weight: 600; }
+.pb-dialog-text { margin: 0; font-size: 15px; line-height: 22px; color: var(--ink-muted); }
+.pb-pin { display: flex; justify-content: center; gap: var(--space-3); }
+.pb-pin-dot { width: 16px; height: 16px; box-sizing: border-box; border: 2px solid var(--border-strong); border-radius: var(--radius-pill); }
+.pb-pin-dot[data-filled] { border-color: var(--ink); background: var(--ink); }
+
+/* App bar, chips, inputs */
+.pb-appbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); padding: var(--space-2) var(--space-4); border-bottom: 1px solid var(--border); background: var(--surface); }
+.pb-brand { font-family: var(--font-condensed); font-size: 20px; line-height: 24px; font-weight: 600; }
+.pb-chip { display: inline-flex; align-items: center; gap: var(--space-1); min-height: 28px; box-sizing: border-box; padding: 0 var(--space-2); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--surface-2); color: var(--ink); font-size: 13px; line-height: 18px; font-weight: 600; white-space: nowrap; }
+.pb-chip[data-tone="demo"] { border-color: var(--info-text); background: var(--info-soft); color: var(--info-text); }
+.pb-input { min-height: var(--target-min); min-width: 0; box-sizing: border-box; margin: 0; padding: 0 var(--space-3); border: 1px solid var(--border-strong); border-radius: var(--radius-md); background: var(--surface); color: var(--ink); font-family: var(--font-sans); font-size: 15px; line-height: 20px; }
+.pb-input::placeholder { color: var(--ink-subtle); }
+.pb-input:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* Charts: one measure, one hue */
+.pb-chart { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); align-items: end; gap: var(--space-2); height: 180px; border-bottom: 1px solid var(--border-strong); }
+.pb-bar { min-width: 0; border-radius: 4px 4px 0 0; background: var(--accent-text); }
+.pb-axis { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: var(--space-2); font-size: 12px; line-height: 16px; color: var(--ink-subtle); text-align: center; }
+.pb-hbar { height: 12px; border-start-end-radius: 4px; border-end-end-radius: 4px; background: var(--accent-text); }
+
+@media (prefers-reduced-motion: reduce) { .pb-tile, .pb-btn, .pb-key { transition: none; } }
+
+html { background: var(--bg); }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-sans); font-size: 15px; line-height: 22px; -webkit-font-smoothing: antialiased; }
+.page { max-width: 1280px; margin: 0 auto; padding-block: 24px 32px; padding-inline: clamp(16px, 4vw, 40px); display: flex; flex-direction: column; gap: 40px; }
+.intro { display: flex; flex-direction: column; gap: 12px; max-width: 68ch; }
+.intro h1 { margin: 0; font-family: var(--font-condensed); font-size: clamp(34px, 6vw, 56px); line-height: 1.02; font-weight: 600; text-wrap: balance; }
+[dir="rtl"] .intro h1 { font-family: var(--font-sans); line-height: 1.25; }
+.intro p { margin: 0; color: var(--ink-muted); font-size: 17px; line-height: 26px; }
+.status { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; padding: 6px 12px; border-radius: var(--radius-pill); background: var(--warning-soft); color: var(--ink); font-size: 13px; line-height: 18px; font-weight: 600; }
+.status .pb-icon { color: var(--warning-text); width: 16px; height: 16px; }
+.controls { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; }
+.seg { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
+.seg button { min-height: 40px; padding: 0 16px; border: 0; border-radius: var(--radius-md); background: transparent; color: var(--ink-muted); font-family: var(--font-sans); font-size: 15px; font-weight: 500; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--primary); color: var(--on-primary); font-weight: 600; }
+.seg button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.preview { display: flex; flex-direction: column; gap: 16px; }
+.frame { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-2); background: var(--bg); }
+.scaler { position: relative; }
+.stage { width: 1440px; transform-origin: 0 0; background: var(--bg); color: var(--ink); }
+.screen { display: flex; flex-direction: column; min-height: 860px; }
+.screen[hidden] { display: none; }
+.shell { min-height: 100vh; background: var(--bg); color: var(--ink); }
+.hint { margin: 0; font-size: 13px; line-height: 18px; color: var(--ink-subtle); }
+.block { display: flex; flex-direction: column; gap: 16px; }
+.block h2 { margin: 0; font-size: 24px; line-height: 30px; font-weight: 600; }
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); overflow: hidden; }
+.step { counter-increment: step; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding: 14px 16px; border-top: 1px solid var(--border); }
+.step:first-child { border-top: 0; }
+.step-main { flex: 1 1 280px; min-width: 0; display: grid; grid-template-columns: 28px minmax(0, 1fr); column-gap: 12px; }
+.step-main::before { content: counter(step); grid-row: span 2; align-self: start; display: grid; place-items: center; width: 28px; height: 28px; border-radius: var(--radius-pill); background: var(--surface-2); border: 1px solid var(--border-strong); color: var(--ink); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.step-title { margin: 0; font-size: 15px; line-height: 22px; font-weight: 600; }
+.step-text { margin: 0; grid-column: 2; color: var(--ink-muted); font-size: 15px; line-height: 22px; }
+.step[data-state="later"] .step-title { font-weight: 500; }
+.state { display: inline-flex; align-items: center; gap: 6px; min-height: 28px; padding: 0 12px; border-radius: var(--radius-pill); font-size: 13px; line-height: 18px; font-weight: 600; white-space: nowrap; background: var(--surface-2); color: var(--ink-muted); }
+.state .pb-icon { width: 16px; height: 16px; }
+.state[data-state="done"] { background: var(--success-soft); color: var(--success-text); }
+.state[data-state="review"] { background: var(--warning-soft); color: var(--warning-text); }
+.state[data-state="next"] { background: var(--info-soft); color: var(--info-text); }
+.needs { margin: 0; padding-inline-start: 22px; display: flex; flex-direction: column; gap: 8px; max-width: 72ch; }
+.foot { margin: 0; font-size: 13px; line-height: 18px; color: var(--ink-subtle); max-width: 72ch; }
+</style>
+<div class="shell" id="shell">
+<div class="page" id="page" dir="ltr" lang="en">
+
+<section class="preview" aria-label="Screens">
+<div class="controls">
+<div class="seg" role="group" aria-label="Screen" id="seg-screen">
+<button type="button" data-screen="pos" aria-pressed="true" data-en="Point of sale" data-ar="شاشة البيع">Point of sale</button>
+<button type="button" data-screen="workshop" aria-pressed="false" data-en="Workshop" data-ar="الورشة">Workshop</button>
+<button type="button" data-screen="dashboard" aria-pressed="false" data-en="Dashboard" data-ar="لوحة الإدارة">Dashboard</button>
+</div>
+<div class="seg" role="group" aria-label="Language" id="seg-lang">
+<button type="button" data-lang="en" aria-pressed="true">English</button>
+<button type="button" data-lang="ar" aria-pressed="false">العربية</button>
+</div>
+<div class="seg" role="group" aria-label="Theme" id="seg-theme">
+<button type="button" data-theme-choice="light" aria-pressed="false" data-en="Light" data-ar="فاتح">Light</button>
+<button type="button" data-theme-choice="dark" aria-pressed="false" data-en="Dark" data-ar="داكن">Dark</button>
+</div>
+</div>
+<div class="frame" id="frame" dir="ltr"><div class="scaler" id="scaler"><div class="stage" id="stage"><div class="pb-root screen" data-screen="pos" data-lang="en" dir="ltr" lang="en"><header class="pb-appbar">
+<span class="pb-brand">Pedar Bikes</span>
+<span class="pb-chip">MAIN DEPARTMENT</span>
+<span class="pb-chip">W1</span>
+<span class="pb-chip">Cashier: Nawfel</span>
+<span class="pb-chip" data-tone="demo">Demo data</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-inline-start: auto">
+<span class="pb-device" data-state="ok"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0M8 15.5a6 6 0 0 1 8 0M12 19v.1"></path></svg>Sync<span class="pb-device-state"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Up to date</span></span>
+<span class="pb-device" data-state="warn"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="14" width="10" height="6"></rect><path d="M7 9V4h10v5M7 17H5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-2"></path></svg>Printer<span class="pb-device-state"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3L12 4zM12 10v4M12 17.2v.1"></path></svg>Paper low</span></span>
+<span class="pb-device" data-state="ok"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="18" height="9" rx="1.5"></rect><path d="M10 13h4M6 9V6h12v3"></path></svg>Drawer<span class="pb-device-state"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Closed</span></span>
+<span class="pb-device" data-state="ok"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 10h18"></path></svg>Card terminal<span class="pb-device-state"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Standalone</span></span>
+<span class="pb-device" data-state="ok"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="11" rx="1.5"></rect><path d="M9 20h6M12 16v4"></path></svg>Display<span class="pb-device-state"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Connected</span></span>
+</div>
+</header>
+
+<main style="flex: 1 1 auto; display: flex; flex-wrap: wrap; align-items: stretch; gap: 16px; padding: 16px">
+
+<section aria-label="Ticket" style="flex: 1 1 400px; max-width: 440px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<div class="pb-ticket" style="flex: 1 1 auto">
+<div class="pb-ticket-head"><span>Qty</span><span>Description</span><span class="pb-num">Price</span><span class="pb-num">Total</span></div>
+<div class="pb-ticket-body">
+<div class="pb-line"><span>1</span><span>Silver Service (MTB)<span class="pb-line-sub">Repair order created at checkout</span></span><span class="pb-num">350.00</span><span class="pb-num">350.00</span></div>
+<div class="pb-line" aria-selected="true"><span>2</span><span>Add Tyre Sealant (MTB-120ml)</span><span class="pb-num">45.00</span><span class="pb-num">90.00</span></div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px">
+<button class="pb-btn" style="padding: 0 4px">Up</button>
+<button class="pb-btn" style="padding: 0 4px">Less</button>
+<button class="pb-btn" style="padding: 0 4px" aria-label="Plus">+</button>
+<button class="pb-btn" style="padding: 0 4px">Add</button>
+<button class="pb-btn" style="padding: 0 4px">Down</button>
+<button class="pb-btn" style="padding: 0 4px">Hold</button>
+<button class="pb-btn" style="padding: 0 4px">Recall</button>
+<button class="pb-btn" style="padding: 0 4px; gap: 4px"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M7 11V8a5 5 0 0 1 10 0v3"></path></svg>Void</button>
+<button class="pb-btn" style="padding: 0 4px; gap: 4px"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M7 11V8a5 5 0 0 1 10 0v3"></path></svg>Refund</button>
+<button class="pb-btn" style="padding: 0 4px">Clean</button>
+</div>
+<div style="display: flex; gap: 8px; align-items: center">
+<label for="scan" class="pb-note">Code</label>
+<input class="pb-input" id="scan" type="text" placeholder="Scan or type a code" style="flex: 1 1 auto">
+<button class="pb-btn">Enter</button>
+<button class="pb-btn" data-variant="quiet">Col.</button>
+</div>
+<div class="pb-ticket">
+<dl class="pb-totals" style="border-top: 0"><dt>Sub Total</dt><dd>440.00</dd><dt>Discount</dt><dd>0.00</dd><dt>Tax1</dt><dd>0.00</dd><dt>Tax2</dt><dd>0.00</dd></dl>
+<div class="pb-net"><span class="pb-net-label">NET</span><span class="pb-net-value">440.00 <span class="pb-net-unit">QAR</span></span></div>
+<div class="pb-pay"><div><span class="pb-pay-label">Amount Paid</span><span class="pb-pay-value" data-tone="paid">200.00</span></div><div><span class="pb-pay-label">Amount Due</span><span class="pb-pay-value" data-tone="due">240.00</span></div></div>
+</div>
+</section>
+
+<section aria-label="Services" style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div class="pb-tiles">
+<button class="pb-tile" data-fam="wash">Wash and Lube (RB)</button>
+<button class="pb-tile" data-fam="quick">Basic Quick Bike Service (RB)</button>
+<button class="pb-tile" data-fam="bronze">Bronze Service (RB)</button>
+<button class="pb-tile" data-fam="silver">Silver Service (RB)</button>
+<button class="pb-tile" data-fam="gold">Gold Service (RB)</button>
+<button class="pb-tile" data-fam="wash">Wash and Lube (MTB)</button>
+<button class="pb-tile" data-fam="quick">Basic Quick Bike Service (MTB)</button>
+<button class="pb-tile" data-fam="bronze">Bronze Service (MTB)</button>
+<button class="pb-tile" data-fam="silver">Silver Service (MTB)</button>
+<button class="pb-tile" data-fam="gold">Gold Service (MTB)</button>
+<button class="pb-tile" data-fam="wash">Wash and Lube (MTB-FS)</button>
+<button class="pb-tile" data-fam="quick">Basic Quick Bike Service (MTB-FS)</button>
+<button class="pb-tile" data-fam="bronze">Bronze Service (MTB-FS)</button>
+<button class="pb-tile" data-fam="silver">Silver Service (MTB-FS)</button>
+<button class="pb-tile" data-fam="gold">Gold Service (MTB-FS)</button>
+<button class="pb-tile" data-fam="adjust">Adjust Shifter (Front and/or Rear)</button>
+<button class="pb-tile" data-fam="other">Basic Bike Assembly</button>
+<button class="pb-tile" data-fam="wheels">Precision Wheel Tuning</button>
+<button class="pb-tile" data-fam="tyres">Add Tyre Sealant (RB-60ml)</button>
+<button class="pb-tile" data-fam="other">Full Bike Assembly (Disc)</button>
+<button class="pb-tile" data-fam="adjust">Adjust Brakes (Front and/or Rear)</button>
+<button class="pb-tile" data-fam="wheels">Basic Wheel Alignment</button>
+<button class="pb-tile" data-fam="other">Remove/Clean Drive Train</button>
+<button class="pb-tile" data-fam="tyres">Add Tyre Sealant (MTB-120ml)</button>
+<button class="pb-tile" data-fam="other">Full Bike Assembly (Rim)</button>
+<button class="pb-tile" data-fam="other">Bottom Bracket Service</button>
+<button class="pb-tile" data-fam="other">Bike Packaging</button>
+<button class="pb-tile" data-fam="other">Seat Post Cutting</button>
+<button class="pb-tile" data-fam="other">Pedal Service</button>
+<button class="pb-tile" data-fam="tyres">Change Tire (Tubular)</button>
+<button class="pb-tile" data-fam="other">Headset Service</button>
+<button class="pb-tile" data-fam="other">Brake Bleeding</button>
+<button class="pb-tile" data-fam="wheels">Wheel Build</button>
+<button class="pb-tile" data-fam="wheels">Wheel Hub Service (Rear)</button>
+<button class="pb-tile" data-fam="other">Bike Rental</button>
+<button class="pb-tile" data-fam="min">Minimum Service Charge</button>
+<button class="pb-tile" data-fam="other">Fork Tube Cutting</button>
+<button class="pb-tile" data-fam="wheels">Wheel Hub Service (Front)</button>
+<button class="pb-tile" data-fam="wheels">Wheel Hub Service (Full Set)</button>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<button class="pb-btn" data-variant="accent" data-size="lg">Enter Amount</button>
+<button class="pb-btn" data-variant="primary" data-size="lg">Cash</button>
+<button class="pb-btn" data-size="lg">Other Payments</button>
+</div>
+</section>
+
+<section aria-label="Actions and keypad" style="flex: 1 1 300px; max-width: 340px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button class="pb-btn" data-variant="quiet" style="grid-column: 1 / -1">Department: MAIN</button>
+<button class="pb-btn">Search</button>
+<button class="pb-btn">Disc. %</button>
+<button class="pb-btn">Disc. $</button>
+<button class="pb-btn">Item Disc. %</button>
+<button class="pb-btn"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M7 11V8a5 5 0 0 1 10 0v3"></path></svg>Set Price</button>
+<button class="pb-btn"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M7 11V8a5 5 0 0 1 10 0v3"></path></svg>No Sale</button>
+<button class="pb-btn">Customers</button>
+<button class="pb-btn">Orders</button>
+<button class="pb-btn">Clear Pay-Disc.</button>
+<button class="pb-btn">CMD</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div class="pb-input" aria-label="Amount entered" style="display: flex; align-items: center; justify-content: flex-end; font-size: 24px; font-weight: 500">200.00</div>
+<div class="pb-keypad" dir="ltr">
+<button class="pb-key">1</button>
+<button class="pb-key">2</button>
+<button class="pb-key">3</button>
+<button class="pb-key">4</button>
+<button class="pb-key">5</button>
+<button class="pb-key">6</button>
+<button class="pb-key">7</button>
+<button class="pb-key">8</button>
+<button class="pb-key">9</button>
+<button class="pb-key">0</button>
+<button class="pb-key">00</button>
+<button class="pb-key">000</button>
+<button class="pb-key" data-kind="fn">Cl</button>
+<button class="pb-key">.</button>
+<button class="pb-key" data-kind="fn">Back</button>
+</div>
+</div>
+</section>
+
+</main></div><div class="pb-root screen" data-screen="pos" data-lang="ar" dir="rtl" lang="ar" hidden><header class="pb-appbar">
+<span class="pb-brand">Pedar Bikes</span>
+<span class="pb-chip">القسم الرئيسي</span>
+<span class="pb-chip">W1</span>
+<span class="pb-chip">أمين الصندوق: نوفل</span>
+<span class="pb-chip" data-tone="demo">بيانات تجريبية</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-inline-start: auto">
+<span class="pb-device" data-state="ok"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0M8 15.5a6 6 0 0 1 8 0M12 19v.1"></path></svg>المزامنة<span class="pb-device-state"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>محدَّثة</span></span>
+<span class="pb-device" data-state="warn"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="14" width="10" height="6"></rect><path d="M7 9V4h10v5M7 17H5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-2"></path></svg>الطابعة<span class="pb-device-state"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3L12 4zM12 10v4M12 17.2v.1"></path></svg>الورق منخفض</span></span>
+<span class="pb-device" data-state="ok"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="18" height="9" rx="1.5"></rect><path d="M10 13h4M6 9V6h12v3"></path></svg>الدرج<span class="pb-device-state"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>مغلق</span></span>
+<span class="pb-device" data-state="ok"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 10h18"></path></svg>جهاز البطاقات<span class="pb-device-state"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>مستقل</span></span>
+<span class="pb-device" data-state="ok"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="11" rx="1.5"></rect><path d="M9 20h6M12 16v4"></path></svg>شاشة العميل<span class="pb-device-state"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>متصلة</span></span>
+</div>
+</header>
+
+<main style="flex: 1 1 auto; display: flex; flex-wrap: wrap; align-items: stretch; gap: 16px; padding: 16px">
+
+<section aria-label="الفاتورة" style="flex: 1 1 400px; max-width: 440px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<div class="pb-ticket" style="flex: 1 1 auto">
+<div class="pb-ticket-head"><span>الكمية</span><span>الوصف</span><span class="pb-num">السعر</span><span class="pb-num">الإجمالي</span></div>
+<div class="pb-ticket-body">
+<div class="pb-line"><span>1</span><span>الخدمة الفضية (MTB)<span class="pb-line-sub">يُنشأ أمر الإصلاح عند تأكيد البيع</span></span><span class="pb-num">350.00</span><span class="pb-num">350.00</span></div>
+<div class="pb-line" aria-selected="true"><span>2</span><span>إضافة سائل مانع للثقب (MTB - 120 مل)</span><span class="pb-num">45.00</span><span class="pb-num">90.00</span></div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px">
+<button class="pb-btn" style="padding: 0 4px">أعلى</button>
+<button class="pb-btn" style="padding: 0 4px">ناقص</button>
+<button class="pb-btn" style="padding: 0 4px" aria-label="زائد">+</button>
+<button class="pb-btn" style="padding: 0 4px">إضافة</button>
+<button class="pb-btn" style="padding: 0 4px">أسفل</button>
+<button class="pb-btn" style="padding: 0 4px">تعليق</button>
+<button class="pb-btn" style="padding: 0 4px">استرجاع</button>
+<button class="pb-btn" style="padding: 0 4px; gap: 4px"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M7 11V8a5 5 0 0 1 10 0v3"></path></svg>إلغاء</button>
+<button class="pb-btn" style="padding: 0 4px; gap: 4px"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M7 11V8a5 5 0 0 1 10 0v3"></path></svg>استرداد</button>
+<button class="pb-btn" style="padding: 0 4px">مسح</button>
+</div>
+<div style="display: flex; gap: 8px; align-items: center">
+<label for="scan-ar" class="pb-note">الرمز</label>
+<input class="pb-input" id="scan-ar" type="text" placeholder="امسح الرمز أو أدخله" style="flex: 1 1 auto">
+<button class="pb-btn">إدخال</button>
+<button class="pb-btn" data-variant="quiet" dir="ltr">Col.</button>
+</div>
+<div class="pb-ticket">
+<dl class="pb-totals" style="border-top: 0"><dt>المجموع الفرعي</dt><dd>440.00</dd><dt>الخصم</dt><dd>0.00</dd><dt>ضريبة 1</dt><dd>0.00</dd><dt>ضريبة 2</dt><dd>0.00</dd></dl>
+<div class="pb-net"><span class="pb-net-label">الصافي</span><span class="pb-net-value">440.00 <span class="pb-net-unit">ر.ق</span></span></div>
+<div class="pb-pay"><div><span class="pb-pay-label">المبلغ المدفوع</span><span class="pb-pay-value" data-tone="paid">200.00</span></div><div><span class="pb-pay-label">المبلغ المستحق</span><span class="pb-pay-value" data-tone="due">240.00</span></div></div>
+</div>
+</section>
+
+<section aria-label="الخدمات" style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div class="pb-tiles">
+<button class="pb-tile" data-fam="wash">غسيل وتشحيم (RB)</button>
+<button class="pb-tile" data-fam="quick">خدمة سريعة أساسية (RB)</button>
+<button class="pb-tile" data-fam="bronze">الخدمة البرونزية (RB)</button>
+<button class="pb-tile" data-fam="silver">الخدمة الفضية (RB)</button>
+<button class="pb-tile" data-fam="gold">الخدمة الذهبية (RB)</button>
+<button class="pb-tile" data-fam="wash">غسيل وتشحيم (MTB)</button>
+<button class="pb-tile" data-fam="quick">خدمة سريعة أساسية (MTB)</button>
+<button class="pb-tile" data-fam="bronze">الخدمة البرونزية (MTB)</button>
+<button class="pb-tile" data-fam="silver">الخدمة الفضية (MTB)</button>
+<button class="pb-tile" data-fam="gold">الخدمة الذهبية (MTB)</button>
+<button class="pb-tile" data-fam="wash">غسيل وتشحيم (MTB-FS)</button>
+<button class="pb-tile" data-fam="quick">خدمة سريعة أساسية (MTB-FS)</button>
+<button class="pb-tile" data-fam="bronze">الخدمة البرونزية (MTB-FS)</button>
+<button class="pb-tile" data-fam="silver">الخدمة الفضية (MTB-FS)</button>
+<button class="pb-tile" data-fam="gold">الخدمة الذهبية (MTB-FS)</button>
+<button class="pb-tile" data-fam="adjust">ضبط ناقل السرعات (أمامي و/أو خلفي)</button>
+<button class="pb-tile" data-fam="other">تجميع أساسي للدراجة</button>
+<button class="pb-tile" data-fam="wheels">معايرة دقيقة للعجلة</button>
+<button class="pb-tile" data-fam="tyres">إضافة سائل مانع للثقب (RB - 60 مل)</button>
+<button class="pb-tile" data-fam="other">تجميع كامل (فرامل قرصية)</button>
+<button class="pb-tile" data-fam="adjust">ضبط الفرامل (أمامية و/أو خلفية)</button>
+<button class="pb-tile" data-fam="wheels">ضبط أساسي لاستقامة العجلة</button>
+<button class="pb-tile" data-fam="other">فك وتنظيف ناقل الحركة</button>
+<button class="pb-tile" data-fam="tyres">إضافة سائل مانع للثقب (MTB - 120 مل)</button>
+<button class="pb-tile" data-fam="other">تجميع كامل (فرامل الطوق)</button>
+<button class="pb-tile" data-fam="other">صيانة محور الدواسات</button>
+<button class="pb-tile" data-fam="other">تغليف الدراجة</button>
+<button class="pb-tile" data-fam="other">قص عمود المقعد</button>
+<button class="pb-tile" data-fam="other">صيانة الدواسات</button>
+<button class="pb-tile" data-fam="tyres">تغيير إطار (أنبوبي)</button>
+<button class="pb-tile" data-fam="other">صيانة طقم التوجيه</button>
+<button class="pb-tile" data-fam="other">تنفيس الفرامل</button>
+<button class="pb-tile" data-fam="wheels">بناء عجلة</button>
+<button class="pb-tile" data-fam="wheels">صيانة محور العجلة (خلفي)</button>
+<button class="pb-tile" data-fam="other">تأجير دراجة</button>
+<button class="pb-tile" data-fam="min">الحد الأدنى لرسوم الخدمة</button>
+<button class="pb-tile" data-fam="other">قص أنبوب الشوكة</button>
+<button class="pb-tile" data-fam="wheels">صيانة محور العجلة (أمامي)</button>
+<button class="pb-tile" data-fam="wheels">صيانة محور العجلة (طقم كامل)</button>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<button class="pb-btn" data-variant="accent" data-size="lg">إدخال المبلغ</button>
+<button class="pb-btn" data-variant="primary" data-size="lg">نقدًا</button>
+<button class="pb-btn" data-size="lg">طرق دفع أخرى</button>
+</div>
+</section>
+
+<section aria-label="الإجراءات ولوحة الأرقام" style="flex: 1 1 300px; max-width: 340px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button class="pb-btn" data-variant="quiet" style="grid-column: 1 / -1">القسم: الرئيسي</button>
+<button class="pb-btn">بحث</button>
+<button class="pb-btn">خصم %</button>
+<button class="pb-btn">خصم بمبلغ</button>
+<button class="pb-btn">خصم الصنف %</button>
+<button class="pb-btn"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M7 11V8a5 5 0 0 1 10 0v3"></path></svg>تحديد السعر</button>
+<button class="pb-btn"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M7 11V8a5 5 0 0 1 10 0v3"></path></svg>بدون بيع</button>
+<button class="pb-btn">العملاء</button>
+<button class="pb-btn">الطلبات</button>
+<button class="pb-btn">مسح الدفع والخصم</button>
+<button class="pb-btn">CMD</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div class="pb-input" dir="ltr" aria-label="المبلغ المُدخل" style="display: flex; align-items: center; justify-content: flex-end; font-size: 24px; font-weight: 500">200.00</div>
+<div class="pb-keypad" dir="ltr">
+<button class="pb-key">1</button>
+<button class="pb-key">2</button>
+<button class="pb-key">3</button>
+<button class="pb-key">4</button>
+<button class="pb-key">5</button>
+<button class="pb-key">6</button>
+<button class="pb-key">7</button>
+<button class="pb-key">8</button>
+<button class="pb-key">9</button>
+<button class="pb-key">0</button>
+<button class="pb-key">00</button>
+<button class="pb-key">000</button>
+<button class="pb-key" data-kind="fn">مسح</button>
+<button class="pb-key">.</button>
+<button class="pb-key" data-kind="fn">رجوع</button>
+</div>
+</div>
+</section>
+
+</main></div><div class="pb-root screen" data-screen="workshop" data-lang="en" dir="ltr" lang="en" hidden><header class="pb-appbar">
+<span class="pb-brand">Pedar Bikes</span>
+<span class="pb-chip">Workshop</span>
+<span class="pb-chip" data-tone="demo">Demo data</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-inline-start: auto">
+<span class="pb-device" data-state="ok"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0M8 15.5a6 6 0 0 1 8 0M12 19v.1"></path></svg>Sync<span class="pb-device-state"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Up to date</span></span>
+</div>
+</header>
+
+<main style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 16px; padding: 16px 24px 24px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px">
+<h1 style="margin: 0; font-size: 24px; line-height: 30px; font-weight: 600">Workshop</h1>
+<span style="font-size: 15px; line-height: 22px; color: var(--ink-muted)">9 open orders, 2 delivered today</span>
+<span class="pb-late"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3L12 4zM12 10v4M12 17.2v.1"></path></svg>1 late</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-inline-start: auto">
+<button class="pb-btn" data-variant="quiet">All mechanics</button>
+<button class="pb-btn" data-variant="quiet">Today</button>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: 8px; align-items: start">
+
+<section class="pb-col" aria-label="Received">
+<div class="pb-col-head"><span class="pb-pill" data-status="received"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l2.5-7h11L20 13v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-5zM4 13h4.5l1 2h5l1-2H20"></path></svg>Received</span><span class="pb-count">2</span></div>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000131</span></div>
+<h2 class="pb-kcard-title">Wash and Lube (RB)</h2>
+<p class="pb-kcard-meta">Road bike, frame 54</p>
+<div class="pb-kcard-foot"><span>Dropped off at 09:10</span></div>
+</article>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000132</span></div>
+<h2 class="pb-kcard-title">Gold Service (MTB-FS)</h2>
+<p class="pb-kcard-meta">Full suspension, frame L</p>
+<div class="pb-kcard-foot"><span>Dropped off at 09:40</span></div>
+</article>
+</section>
+
+<section class="pb-col" aria-label="Diagnosis">
+<div class="pb-col-head"><span class="pb-pill" data-status="diagnostic"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-4.2-4.2"></path></svg>Diagnosis</span><span class="pb-count">1</span></div>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000130</span><span class="pb-avatar">RK</span></div>
+<h2 class="pb-kcard-title">Minimum Service Charge</h2>
+<p class="pb-kcard-meta">Bottom bracket noise to identify</p>
+<div class="pb-kcard-foot"><span>Due at 12:00</span></div>
+</article>
+</section>
+
+<section class="pb-col" aria-label="Awaiting customer approval">
+<div class="pb-col-head"><span class="pb-pill" data-status="approval"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l2.5 2.5"></path></svg>Awaiting customer</span><span class="pb-count">1</span></div>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000128</span><span class="pb-avatar">AS</span></div>
+<h2 class="pb-kcard-title">Bottom Bracket Service</h2>
+<p class="pb-kcard-meta">Extra quote sent by WhatsApp</p>
+<div class="pb-kcard-foot"><span>No reply for 2 h</span></div>
+</article>
+</section>
+
+<section class="pb-col" aria-label="In progress">
+<div class="pb-col-head"><span class="pb-pill" data-status="progress"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6.5a4 4 0 0 0-5.3 5.3L4 17l3 3 5.2-5.2a4 4 0 0 0 5.3-5.3l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z"></path></svg>In progress</span><span class="pb-count">2</span></div>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000127</span><span class="pb-avatar">RK</span></div>
+<h2 class="pb-kcard-title">Silver Service (MTB)</h2>
+<p class="pb-kcard-meta">Mountain bike, frame M</p>
+<span class="pb-timer">1:12 of 2:00</span>
+<div class="pb-kcard-foot"><span>Due at 16:30</span></div>
+</article>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000125</span><span class="pb-avatar">AS</span></div>
+<h2 class="pb-kcard-title">Brake Bleeding</h2>
+<p class="pb-kcard-meta">Road bike, disc brakes</p>
+<span class="pb-timer">2:40 of 2:00</span>
+<div class="pb-kcard-foot"><span class="pb-late"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3L12 4zM12 10v4M12 17.2v.1"></path></svg>40 min late</span></div>
+</article>
+</section>
+
+<section class="pb-col" aria-label="Awaiting parts">
+<div class="pb-col-head"><span class="pb-pill" data-status="parts"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4V8zM4 8l8 4 8-4M12 12v8"></path></svg>Awaiting parts</span><span class="pb-count">1</span></div>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000121</span><span class="pb-avatar">AS</span></div>
+<h2 class="pb-kcard-title">Wheel Build</h2>
+<p class="pb-kcard-meta">Rim on order from the supplier</p>
+<div class="pb-kcard-foot"><span>Part expected Thursday</span></div>
+</article>
+</section>
+
+<section class="pb-col" aria-label="Ready">
+<div class="pb-col-head"><span class="pb-pill" data-status="ready"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Ready</span><span class="pb-count">2</span></div>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000124</span><span class="pb-avatar">RK</span></div>
+<h2 class="pb-kcard-title">Basic Quick Bike Service (RB)</h2>
+<p class="pb-kcard-meta">Customer notified by WhatsApp</p>
+<div class="pb-kcard-foot"><span>Ready since 10:15</span></div>
+</article>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000126</span><span class="pb-avatar">AS</span></div>
+<h2 class="pb-kcard-title">Add Tyre Sealant (MTB-120ml)</h2>
+<p class="pb-kcard-meta">Customer notified by WhatsApp</p>
+<div class="pb-kcard-foot"><span>Ready since 11:05</span></div>
+</article>
+</section>
+
+<section class="pb-col" aria-label="Delivered">
+<div class="pb-col-head"><span class="pb-pill" data-status="delivered"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V4M6 5h11l-2.5 4 2.5 4H6"></path></svg>Delivered</span><span class="pb-count">2</span></div>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000119</span><span class="pb-avatar">RK</span></div>
+<h2 class="pb-kcard-title">Bronze Service (RB)</h2>
+<p class="pb-kcard-meta">Paid, invoice sent</p>
+<div class="pb-kcard-foot"><span>Delivered at 09:30</span></div>
+</article>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000120</span><span class="pb-avatar">AS</span></div>
+<h2 class="pb-kcard-title">Bike Packaging</h2>
+<p class="pb-kcard-meta">Paid, invoice sent</p>
+<div class="pb-kcard-foot"><span>Delivered at 10:45</span></div>
+</article>
+</section>
+
+</div>
+</main></div><div class="pb-root screen" data-screen="workshop" data-lang="ar" dir="rtl" lang="ar" hidden><header class="pb-appbar">
+<span class="pb-brand">Pedar Bikes</span>
+<span class="pb-chip">الورشة</span>
+<span class="pb-chip" data-tone="demo">بيانات تجريبية</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-inline-start: auto">
+<span class="pb-device" data-state="ok"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0M8 15.5a6 6 0 0 1 8 0M12 19v.1"></path></svg>المزامنة<span class="pb-device-state"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>محدَّثة</span></span>
+</div>
+</header>
+
+<main style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 16px; padding: 16px 24px 24px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px">
+<h1 style="margin: 0; font-size: 24px; line-height: 30px; font-weight: 600">الورشة</h1>
+<span style="font-size: 15px; line-height: 22px; color: var(--ink-muted)">9 أوامر مفتوحة، وتم تسليم 2 اليوم</span>
+<span class="pb-late"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3L12 4zM12 10v4M12 17.2v.1"></path></svg>أمر واحد متأخر</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-inline-start: auto">
+<button class="pb-btn" data-variant="quiet">كل الفنيين</button>
+<button class="pb-btn" data-variant="quiet">اليوم</button>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: 8px; align-items: start">
+
+<section class="pb-col" aria-label="تم الاستلام">
+<div class="pb-col-head"><span class="pb-pill" data-status="received"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l2.5-7h11L20 13v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-5zM4 13h4.5l1 2h5l1-2H20"></path></svg>تم الاستلام</span><span class="pb-count">2</span></div>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000131</span></div>
+<h2 class="pb-kcard-title">غسيل وتشحيم (RB)</h2>
+<p class="pb-kcard-meta">دراجة طريق، مقاس 54</p>
+<div class="pb-kcard-foot"><span>تم الإيداع 09:10</span></div>
+</article>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000132</span></div>
+<h2 class="pb-kcard-title">الخدمة الذهبية (MTB-FS)</h2>
+<p class="pb-kcard-meta">تعليق كامل، مقاس L</p>
+<div class="pb-kcard-foot"><span>تم الإيداع 09:40</span></div>
+</article>
+</section>
+
+<section class="pb-col" aria-label="تشخيص">
+<div class="pb-col-head"><span class="pb-pill" data-status="diagnostic"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-4.2-4.2"></path></svg>تشخيص</span><span class="pb-count">1</span></div>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000130</span><span class="pb-avatar">RK</span></div>
+<h2 class="pb-kcard-title">الحد الأدنى لرسوم الخدمة</h2>
+<p class="pb-kcard-meta">صوت في محور الدواسات يحتاج إلى فحص</p>
+<div class="pb-kcard-foot"><span>الموعد المتوقع 12:00</span></div>
+</article>
+</section>
+
+<section class="pb-col" aria-label="بانتظار موافقة العميل">
+<div class="pb-col-head"><span class="pb-pill" data-status="approval"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l2.5 2.5"></path></svg>بانتظار العميل</span><span class="pb-count">1</span></div>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000128</span><span class="pb-avatar">AS</span></div>
+<h2 class="pb-kcard-title">صيانة محور الدواسات</h2>
+<p class="pb-kcard-meta">أُرسل عرض سعر إضافي عبر واتساب</p>
+<div class="pb-kcard-foot"><span>بلا رد منذ ساعتين</span></div>
+</article>
+</section>
+
+<section class="pb-col" aria-label="قيد التنفيذ">
+<div class="pb-col-head"><span class="pb-pill" data-status="progress"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6.5a4 4 0 0 0-5.3 5.3L4 17l3 3 5.2-5.2a4 4 0 0 0 5.3-5.3l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z"></path></svg>قيد التنفيذ</span><span class="pb-count">2</span></div>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000127</span><span class="pb-avatar">RK</span></div>
+<h2 class="pb-kcard-title">الخدمة الفضية (MTB)</h2>
+<p class="pb-kcard-meta">دراجة جبلية، مقاس M</p>
+<span class="pb-timer">1:12 من 2:00</span>
+<div class="pb-kcard-foot"><span>الموعد المتوقع 16:30</span></div>
+</article>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000125</span><span class="pb-avatar">AS</span></div>
+<h2 class="pb-kcard-title">تنفيس الفرامل</h2>
+<p class="pb-kcard-meta">دراجة طريق، فرامل قرصية</p>
+<span class="pb-timer">2:40 من 2:00</span>
+<div class="pb-kcard-foot"><span class="pb-late"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3L12 4zM12 10v4M12 17.2v.1"></path></svg>تأخير 40 دقيقة</span></div>
+</article>
+</section>
+
+<section class="pb-col" aria-label="بانتظار القطع">
+<div class="pb-col-head"><span class="pb-pill" data-status="parts"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4V8zM4 8l8 4 8-4M12 12v8"></path></svg>بانتظار القطع</span><span class="pb-count">1</span></div>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000121</span><span class="pb-avatar">AS</span></div>
+<h2 class="pb-kcard-title">بناء عجلة</h2>
+<p class="pb-kcard-meta">الطوق مطلوب من المورّد</p>
+<div class="pb-kcard-foot"><span>القطعة متوقعة يوم الخميس</span></div>
+</article>
+</section>
+
+<section class="pb-col" aria-label="جاهز">
+<div class="pb-col-head"><span class="pb-pill" data-status="ready"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>جاهز</span><span class="pb-count">2</span></div>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000124</span><span class="pb-avatar">RK</span></div>
+<h2 class="pb-kcard-title">خدمة سريعة أساسية (RB)</h2>
+<p class="pb-kcard-meta">تم إبلاغ العميل عبر واتساب</p>
+<div class="pb-kcard-foot"><span>جاهزة منذ 10:15</span></div>
+</article>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000126</span><span class="pb-avatar">AS</span></div>
+<h2 class="pb-kcard-title">إضافة سائل مانع للثقب (MTB - 120 مل)</h2>
+<p class="pb-kcard-meta">تم إبلاغ العميل عبر واتساب</p>
+<div class="pb-kcard-foot"><span>جاهزة منذ 11:05</span></div>
+</article>
+</section>
+
+<section class="pb-col" aria-label="تم التسليم">
+<div class="pb-col-head"><span class="pb-pill" data-status="delivered"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V4M6 5h11l-2.5 4 2.5 4H6"></path></svg>تم التسليم</span><span class="pb-count">2</span></div>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000119</span><span class="pb-avatar">RK</span></div>
+<h2 class="pb-kcard-title">الخدمة البرونزية (RB)</h2>
+<p class="pb-kcard-meta">مدفوع، أُرسلت الفاتورة</p>
+<div class="pb-kcard-foot"><span>تم التسليم 09:30</span></div>
+</article>
+<article class="pb-kcard">
+<div class="pb-kcard-top"><span class="pb-kcard-ref">OR-000120</span><span class="pb-avatar">AS</span></div>
+<h2 class="pb-kcard-title">تغليف الدراجة</h2>
+<p class="pb-kcard-meta">مدفوع، أُرسلت الفاتورة</p>
+<div class="pb-kcard-foot"><span>تم التسليم 10:45</span></div>
+</article>
+</section>
+
+</div>
+</main></div><div class="pb-root screen" data-screen="dashboard" data-lang="en" dir="ltr" lang="en" hidden><header class="pb-appbar">
+<span class="pb-brand">Pedar Bikes</span>
+<span class="pb-chip">Management</span>
+<span class="pb-chip" data-tone="demo">Demo data</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-inline-start: auto">
+<span class="pb-device" data-state="ok"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0M8 15.5a6 6 0 0 1 8 0M12 19v.1"></path></svg>Sync<span class="pb-device-state"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Up to date</span></span>
+</div>
+</header>
+
+<main style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 16px; padding: 16px 24px 24px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px">
+<h1 style="margin: 0; font-size: 24px; line-height: 30px; font-weight: 600">Morning brief</h1>
+<span style="font-size: 15px; line-height: 22px; color: var(--ink-muted)">Sunday 11 October 2026. Figures cover yesterday, Saturday 10.</span>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 16px">
+<div class="pb-kpi"><span class="pb-kpi-label">Revenue</span><span class="pb-kpi-value">8 420.00 <span class="pb-kpi-unit">QAR</span></span><span class="pb-kpi-delta" data-trend="up"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"></path></svg>+640.00 vs Friday</span></div>
+<div class="pb-kpi"><span class="pb-kpi-label">Gross margin</span><span class="pb-kpi-value">38.5 <span class="pb-kpi-unit">%</span></span><span class="pb-kpi-delta" data-trend="down"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>1.2 points below the week</span></div>
+<div class="pb-kpi"><span class="pb-kpi-label">Cash variance, Z report for W1</span><span class="pb-kpi-value">0.00 <span class="pb-kpi-unit">QAR</span></span><span class="pb-kpi-delta">Z closed at 21:04</span></div>
+<div class="pb-kpi"><span class="pb-kpi-label">Open workshop orders</span><span class="pb-kpi-value">9</span><span class="pb-late"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3L12 4zM12 10v4M12 17.2v.1"></path></svg>1 late</span></div>
+<div class="pb-kpi"><span class="pb-kpi-label">Unpaid balances</span><span class="pb-kpi-value">2 150.00 <span class="pb-kpi-unit">QAR</span></span><span class="pb-kpi-delta">3 customers</span></div>
+<div class="pb-kpi"><span class="pb-kpi-label">Out-of-stock items</span><span class="pb-kpi-value">4</span><span class="pb-kpi-delta">2 supplier orders in progress</span></div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+
+<section class="pb-panel" style="flex: 2 1 560px">
+<div class="pb-panel-head"><span>Revenue, last 7 days</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--ink-muted)">in QAR</span></div>
+<div class="pb-panel-body" style="display: flex; flex-direction: column; gap: 8px">
+<div class="pb-chart" style="height: 200px" role="img" aria-label="Daily revenue from Sunday 4 to Saturday 10 October: 5 900, 4 300, 4 800, 5 200, 6 900, 7 780 and 8 420 QAR">
+<div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%"><div class="pb-bar" title="Sunday 4: 5 900.00 QAR" style="height: 118px"></div></div>
+<div style="display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; height: 100%"><span style="font-size: 12px; line-height: 16px; text-align: center; color: var(--ink-muted)">4 300</span><div class="pb-bar" title="Monday 5: 4 300.00 QAR" style="height: 86px"></div></div>
+<div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%"><div class="pb-bar" title="Tuesday 6: 4 800.00 QAR" style="height: 96px"></div></div>
+<div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%"><div class="pb-bar" title="Wednesday 7: 5 200.00 QAR" style="height: 104px"></div></div>
+<div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%"><div class="pb-bar" title="Thursday 8: 6 900.00 QAR" style="height: 138px"></div></div>
+<div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%"><div class="pb-bar" title="Friday 9: 7 780.00 QAR" style="height: 156px"></div></div>
+<div style="display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; height: 100%"><span style="font-size: 12px; line-height: 16px; font-weight: 600; text-align: center; color: var(--ink)">8 420</span><div class="pb-bar" title="Saturday 10: 8 420.00 QAR" style="height: 168px"></div></div>
+</div>
+<div class="pb-axis"><span>Sun 4</span><span>Mon 5</span><span>Tue 6</span><span>Wed 7</span><span>Thu 8</span><span>Fri 9</span><span>Sat 10</span></div>
+</div>
+</section>
+
+<section class="pb-panel" style="flex: 1 1 360px">
+<div class="pb-panel-head"><span>Alerts</span><span class="pb-count">4</span></div>
+<div class="pb-panel-body" style="display: flex; flex-direction: column; gap: 8px">
+<div class="pb-alert" data-tone="danger"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3L12 4zM12 10v4M12 17.2v.1"></path></svg><span>Critical unpaid balance: 1 450.00 QAR due for 45 days, customer C-0214.</span></div>
+<div class="pb-alert" data-tone="warning"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4V8zM4 8l8 4 8-4M12 12v8"></path></svg><span>Low stock: inner tube 700x25, 3 in stock against a threshold of 10.</span></div>
+<div class="pb-alert" data-tone="warning"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3L12 4zM12 10v4M12 17.2v.1"></path></svg><span>Abnormal margin: Change Tire (Tubular) sold below cost yesterday.</span></div>
+<div class="pb-alert"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M7 11V8a5 5 0 0 1 10 0v3"></path></svg><span>2 No Sale actions yesterday on W1, approved by a manager.</span></div>
+</div>
+</section>
+
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+
+<section class="pb-panel" style="flex: 2 1 560px">
+<div class="pb-panel-head"><span>Workshop this morning</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--ink-muted)">11 orders</span></div>
+<div class="pb-panel-body" style="display: flex; flex-wrap: wrap; gap: 12px 24px">
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="pb-pill" data-status="received"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l2.5-7h11L20 13v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-5zM4 13h4.5l1 2h5l1-2H20"></path></svg>Received</span><span class="pb-count">2</span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="pb-pill" data-status="diagnostic"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-4.2-4.2"></path></svg>Diagnosis</span><span class="pb-count">1</span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="pb-pill" data-status="approval"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l2.5 2.5"></path></svg>Awaiting customer</span><span class="pb-count">1</span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="pb-pill" data-status="progress"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6.5a4 4 0 0 0-5.3 5.3L4 17l3 3 5.2-5.2a4 4 0 0 0 5.3-5.3l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z"></path></svg>In progress</span><span class="pb-count">2</span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="pb-pill" data-status="parts"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4V8zM4 8l8 4 8-4M12 12v8"></path></svg>Awaiting parts</span><span class="pb-count">1</span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="pb-pill" data-status="ready"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Ready</span><span class="pb-count">2</span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="pb-pill" data-status="delivered"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V4M6 5h11l-2.5 4 2.5 4H6"></path></svg>Delivered</span><span class="pb-count">2</span></span>
+</div>
+</section>
+
+<section class="pb-panel" style="flex: 1 1 360px">
+<div class="pb-panel-head"><span>Yesterday's takings</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--ink-muted)">in QAR</span></div>
+<div class="pb-panel-body" style="display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; font-size: 15px; line-height: 22px">
+<span>Card</span><div class="pb-hbar" title="Card: 4 210.00 QAR, 50 %" style="width: 100%"></div><span class="pb-num">4 210.00</span>
+<span>NAPS</span><div class="pb-hbar" title="NAPS: 2 526.00 QAR, 30 %" style="width: 60%"></div><span class="pb-num">2 526.00</span>
+<span>Cash</span><div class="pb-hbar" title="Cash: 1 684.00 QAR, 20 %" style="width: 40%"></div><span class="pb-num">1 684.00</span>
+</div>
+</section>
+
+</div>
+</main></div><div class="pb-root screen" data-screen="dashboard" data-lang="ar" dir="rtl" lang="ar" hidden><header class="pb-appbar">
+<span class="pb-brand">Pedar Bikes</span>
+<span class="pb-chip">الإدارة</span>
+<span class="pb-chip" data-tone="demo">بيانات تجريبية</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-inline-start: auto">
+<span class="pb-device" data-state="ok"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0M8 15.5a6 6 0 0 1 8 0M12 19v.1"></path></svg>المزامنة<span class="pb-device-state"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>محدَّثة</span></span>
+</div>
+</header>
+
+<main style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 16px; padding: 16px 24px 24px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px">
+<h1 style="margin: 0; font-size: 24px; line-height: 30px; font-weight: 600">ملخص الصباح</h1>
+<span style="font-size: 15px; line-height: 22px; color: var(--ink-muted)">الأحد 11 أكتوبر 2026. الأرقام تخص يوم أمس، السبت 10.</span>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 16px">
+<div class="pb-kpi"><span class="pb-kpi-label">المبيعات</span><span class="pb-kpi-value">8 420.00 <span class="pb-kpi-unit">ر.ق</span></span><span class="pb-kpi-delta" data-trend="up"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"></path></svg>+640.00 مقارنة بالجمعة</span></div>
+<div class="pb-kpi"><span class="pb-kpi-label">هامش الربح الإجمالي</span><span class="pb-kpi-value">38.5 <span class="pb-kpi-unit">%</span></span><span class="pb-kpi-delta" data-trend="down"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>أقل بـ 1.2 نقطة من الأسبوع</span></div>
+<div class="pb-kpi"><span class="pb-kpi-label">فرق الصندوق، تقرير Z للجهاز W1</span><span class="pb-kpi-value">0.00 <span class="pb-kpi-unit">ر.ق</span></span><span class="pb-kpi-delta">أُغلق التقرير الساعة 21:04</span></div>
+<div class="pb-kpi"><span class="pb-kpi-label">أوامر الورشة المفتوحة</span><span class="pb-kpi-value">9</span><span class="pb-late"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3L12 4zM12 10v4M12 17.2v.1"></path></svg>أمر واحد متأخر</span></div>
+<div class="pb-kpi"><span class="pb-kpi-label">المبالغ غير المحصّلة</span><span class="pb-kpi-value">2 150.00 <span class="pb-kpi-unit">ر.ق</span></span><span class="pb-kpi-delta">3 عملاء</span></div>
+<div class="pb-kpi"><span class="pb-kpi-label">أصناف نفد مخزونها</span><span class="pb-kpi-value">4</span><span class="pb-kpi-delta">طلبان لدى المورّد قيد التنفيذ</span></div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+
+<section class="pb-panel" style="flex: 2 1 560px">
+<div class="pb-panel-head"><span>المبيعات خلال آخر 7 أيام</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--ink-muted)">بالريال القطري</span></div>
+<div class="pb-panel-body" style="display: flex; flex-direction: column; gap: 8px">
+<div class="pb-chart" style="height: 200px" role="img" aria-label="المبيعات اليومية من الأحد 4 إلى السبت 10 أكتوبر: 5 900 و4 300 و4 800 و5 200 و6 900 و7 780 و8 420 ريالًا قطريًا">
+<div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%"><div class="pb-bar" title="الأحد 4: 5 900.00 ر.ق" style="height: 118px"></div></div>
+<div style="display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; height: 100%"><span style="font-size: 12px; line-height: 16px; text-align: center; color: var(--ink-muted)">4 300</span><div class="pb-bar" title="الاثنين 5: 4 300.00 ر.ق" style="height: 86px"></div></div>
+<div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%"><div class="pb-bar" title="الثلاثاء 6: 4 800.00 ر.ق" style="height: 96px"></div></div>
+<div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%"><div class="pb-bar" title="الأربعاء 7: 5 200.00 ر.ق" style="height: 104px"></div></div>
+<div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%"><div class="pb-bar" title="الخميس 8: 6 900.00 ر.ق" style="height: 138px"></div></div>
+<div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%"><div class="pb-bar" title="الجمعة 9: 7 780.00 ر.ق" style="height: 156px"></div></div>
+<div style="display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; height: 100%"><span style="font-size: 12px; line-height: 16px; font-weight: 600; text-align: center; color: var(--ink)">8 420</span><div class="pb-bar" title="السبت 10: 8 420.00 ر.ق" style="height: 168px"></div></div>
+</div>
+<div class="pb-axis"><span>الأحد 4</span><span>الاثنين 5</span><span>الثلاثاء 6</span><span>الأربعاء 7</span><span>الخميس 8</span><span>الجمعة 9</span><span>السبت 10</span></div>
+</div>
+</section>
+
+<section class="pb-panel" style="flex: 1 1 360px">
+<div class="pb-panel-head"><span>التنبيهات</span><span class="pb-count">4</span></div>
+<div class="pb-panel-body" style="display: flex; flex-direction: column; gap: 8px">
+<div class="pb-alert" data-tone="danger"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3L12 4zM12 10v4M12 17.2v.1"></path></svg><span>مبلغ غير محصّل حرج: 1 450.00 ر.ق مستحقة منذ 45 يومًا، العميل C-0214.</span></div>
+<div class="pb-alert" data-tone="warning"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4V8zM4 8l8 4 8-4M12 12v8"></path></svg><span>مخزون منخفض: أنبوب داخلي 700x25، المتوفر 3 والحد الأدنى 10.</span></div>
+<div class="pb-alert" data-tone="warning"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3L12 4zM12 10v4M12 17.2v.1"></path></svg><span>هامش غير طبيعي: بيعت خدمة تغيير إطار (أنبوبي) أمس بأقل من تكلفتها.</span></div>
+<div class="pb-alert"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M7 11V8a5 5 0 0 1 10 0v3"></path></svg><span>عمليتا «بدون بيع» أمس على الجهاز W1، بموافقة مدير.</span></div>
+</div>
+</section>
+
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+
+<section class="pb-panel" style="flex: 2 1 560px">
+<div class="pb-panel-head"><span>الورشة هذا الصباح</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--ink-muted)">11 أمرًا</span></div>
+<div class="pb-panel-body" style="display: flex; flex-wrap: wrap; gap: 12px 24px">
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="pb-pill" data-status="received"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l2.5-7h11L20 13v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-5zM4 13h4.5l1 2h5l1-2H20"></path></svg>تم الاستلام</span><span class="pb-count">2</span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="pb-pill" data-status="diagnostic"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-4.2-4.2"></path></svg>تشخيص</span><span class="pb-count">1</span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="pb-pill" data-status="approval"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l2.5 2.5"></path></svg>بانتظار العميل</span><span class="pb-count">1</span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="pb-pill" data-status="progress"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6.5a4 4 0 0 0-5.3 5.3L4 17l3 3 5.2-5.2a4 4 0 0 0 5.3-5.3l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6z"></path></svg>قيد التنفيذ</span><span class="pb-count">2</span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="pb-pill" data-status="parts"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4V8zM4 8l8 4 8-4M12 12v8"></path></svg>بانتظار القطع</span><span class="pb-count">1</span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="pb-pill" data-status="ready"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>جاهز</span><span class="pb-count">2</span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="pb-pill" data-status="delivered"><svg class="pb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V4M6 5h11l-2.5 4 2.5 4H6"></path></svg>تم التسليم</span><span class="pb-count">2</span></span>
+</div>
+</section>
+
+<section class="pb-panel" style="flex: 1 1 360px">
+<div class="pb-panel-head"><span>تحصيلات أمس</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: var(--ink-muted)">بالريال القطري</span></div>
+<div class="pb-panel-body" style="display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; font-size: 15px; line-height: 22px">
+<span>البطاقة</span><div class="pb-hbar" title="البطاقة: 4 210.00 ر.ق، 50 %" style="width: 100%"></div><span class="pb-num">4 210.00</span>
+<span>NAPS</span><div class="pb-hbar" title="NAPS: 2 526.00 ر.ق، 30 %" style="width: 60%"></div><span class="pb-num">2 526.00</span>
+<span>نقدًا</span><div class="pb-hbar" title="نقدًا: 1 684.00 ر.ق، 20 %" style="width: 40%"></div><span class="pb-num">1 684.00</span>
+</div>
+</section>
+
+</div>
+</main></div></div></div></div>
+<p class="hint" data-en="Design mockups with demo data: the buttons are not connected yet. On a phone, scroll sideways to see the whole screen." data-ar="تصاميم أولية ببيانات تجريبية، والأزرار غير مفعّلة بعد. على الهاتف، مرّروا أفقيًا لرؤية الشاشة كاملة.">Design mockups with demo data: the buttons are not connected yet. On a phone, scroll sideways to see the whole screen.</p>
+</section>
+
+</div>
+</div>
+<script>
+(function () {
+  var page = document.getElementById('page'), stage = document.getElementById('stage');
+  var frame = document.getElementById('frame'), scaler = document.getElementById('scaler');
+  var state = { screen: 'pos', lang: 'en', theme: null };
+  function systemDark() {
+    var forced = document.documentElement.getAttribute('data-theme');
+    if (forced === 'dark') return true;
+    if (forced === 'light') return false;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function fit() {
+    var scale = Math.max(0.5, Math.min(1, frame.clientWidth / 1440));
+    stage.style.transform = 'scale(' + scale + ')';
+    scaler.style.width = Math.round(1440 * scale) + 'px';
+    scaler.style.height = Math.round(stage.offsetHeight * scale) + 'px';
+  }
+  function press(groupId, attr, value) {
+    var buttons = document.getElementById(groupId).querySelectorAll('button');
+    for (var i = 0; i < buttons.length; i++) buttons[i].setAttribute('aria-pressed', String(buttons[i].getAttribute(attr) === value));
+  }
+  function render() {
+    var theme = state.theme || (systemDark() ? 'dark' : 'light');
+    if (state.theme) document.getElementById('shell').setAttribute('data-theme', theme);
+    stage.setAttribute('data-theme', theme);
+    page.setAttribute('dir', state.lang === 'ar' ? 'rtl' : 'ltr');
+    page.setAttribute('lang', state.lang);
+    var texts = page.querySelectorAll('[data-en]');
+    for (var i = 0; i < texts.length; i++) texts[i].textContent = texts[i].getAttribute('data-' + state.lang);
+    var screens = stage.querySelectorAll('.screen');
+    for (var j = 0; j < screens.length; j++) screens[j].hidden = !(screens[j].getAttribute('data-screen') === state.screen && screens[j].getAttribute('data-lang') === state.lang);
+    press('seg-screen', 'data-screen', state.screen);
+    press('seg-lang', 'data-lang', state.lang);
+    press('seg-theme', 'data-theme-choice', theme);
+    fit();
+    frame.scrollLeft = state.lang === 'ar' ? frame.scrollWidth : 0;
+  }
+  document.getElementById('seg-screen').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { state.screen = b.getAttribute('data-screen'); render(); } });
+  document.getElementById('seg-lang').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { state.lang = b.getAttribute('data-lang'); render(); } });
+  document.getElementById('seg-theme').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { state.theme = b.getAttribute('data-theme-choice'); render(); } });
+  window.addEventListener('resize', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  render();
+})();
+</script>
+
+</body></html>
